@@ -70,3 +70,4 @@ jobs:
           slot-name: "Production"
           package: ./deploy
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E89B71DEC21344C987759DA5C44AE527 }}
+# Trigger test
