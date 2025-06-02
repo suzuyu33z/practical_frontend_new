@@ -4,7 +4,8 @@ import fetchCustomer from "./fetchCustomer";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 
-function PageContent() {
+// ここが追加！: Suspenseはこの中だけ
+function InnerPageContent() {
   const router = useRouter();
   const customer_id = useSearchParams().get("customer_id");
   const [customer, setCustomer] = useState(null);
@@ -30,10 +31,15 @@ function PageContent() {
   );
 }
 
-export default function ConfirmPage() {
+// Suspenseはここに移動！: ConfirmPageはただのラッパー
+function PageContent() {
   return (
     <Suspense>
-      <PageContent />
+      <InnerPageContent />
     </Suspense>
   );
+}
+
+export default function ConfirmPage() {
+  return <PageContent />;
 }
